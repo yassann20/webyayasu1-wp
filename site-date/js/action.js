@@ -13,7 +13,6 @@ jQuery(function () {
     //PC幅(1080px以降)の処理
     if (window.matchMedia('(min-width: '+pc+'px)').matches) {
         jQuery(window).on("load scroll resize", function () {
-            
             /*--header内スライドショーfadein--*/
             jQuery('header').each(function () {
                 let elemPos = jQuery(this).offset().top;
@@ -218,7 +217,7 @@ jQuery(function () {
                 rows: 2,
             });
         });
-    } else if(window.matchMedia('(min-wdth: '+sp+'px) and (max-width: '+spend+'px)')){
+    } else if(window.matchMedia('(min-width: '+sp+'px) and (max-width: '+spend+'px)')){
         jQuery(window).on("load scroll resize", function () {
             
             /*--header内スライドショーfadein--*/

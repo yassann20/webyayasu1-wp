@@ -40,6 +40,11 @@ body div.rhombus h2 {
   height: 100vh;
   z-index: 10;
 }
+div.img {
+  position: relative;
+  overflow: hidden;
+}
+
 header {
   position: fixed;
   width: 100%;
@@ -501,12 +506,13 @@ main {
   main div#top div#content04 div.slideshow02 {
     display: block;
     width: 1240px;
-    padding: 0 100px;
+    /* スライドショー全体の幅を1240pxに変更 */
     margin: 0 auto;
     /*--スライドインで表示--*/
-    transform: translateX(-50%);
+    /* transform: translateX(-50%); 不要 */
     transition: all 0.5s;
     opacity: 0;
+    /* slick-track のスタイルをここで指定 */
   }
   main div#top div#content04 div.slideshow02 .slick-prev {
     left: 25px;
@@ -514,23 +520,37 @@ main {
   main div#top div#content04 div.slideshow02 .slick-dots {
     left: 0;
   }
-  main div#top div#content04 div.slideshow02 div.news-content {
-    position: relative;
-    width: 210px !important;
-    margin: 0 25px;
+  main div#top div#content04 div.slideshow02 .slick-track {
+    width: 1240px;
+    /* スライドトラックの幅を1240pxに変更 */
+    margin: 0 auto;
   }
-  main div#top div#content04 div.slideshow02 div.news-content a p.category {
+  main div#top div#content04 div.slideshow02 .slick-track div.news-content {
+    position: relative;
+    width: 260px !important;
+    margin: 25px;
+  }
+  main div#top div#content04 div.slideshow02 .slick-track div.news-content a p.category {
     position: absolute;
     top: 0;
     left: 0;
     padding: 5px;
     background: #A3A6FF;
+    z-index: 100;
   }
-  main div#top div#content04 div.slideshow02 div.news-content a img {
+  main div#top div#content04 div.slideshow02 .slick-track div.news-content a div.img {
     width: 100%;
-    display: block;
+    aspect-ratio: 16/9;
   }
-  main div#top div#content04 div.slideshow02 div.news-content a div.slide2-content {
+  main div#top div#content04 div.slideshow02 .slick-track div.news-content a div.img img {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: translateY(-50%);
+  }
+  main div#top div#content04 div.slideshow02 .slick-track div.news-content a div.slide2-content {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -553,8 +573,8 @@ main {
     margin: 0 auto;
   }
   main div#top div#contact-in form {
-    max-width: 980px;
-    width: calc(100vw - 300px);
+    max-width: 1240px;
+    width: calc(100vw - 200px);
     margin: 0 auto;
     background-color: #D9D9D9;
     padding: 25px 50px;
@@ -564,12 +584,12 @@ main {
   }
   main div#top div#contact-in form label {
     display: flex;
-    width: 100%;
+    width: 800px;
+    max-width: 1000px;
     flex-wrap: nowrap;
     justify-content: center;
     align-content: center;
-    margin: 0 auto;
-    margin: 25px 0;
+    margin: 25px auto;
   }
   main div#top div#contact-in form label h3 {
     width: 30%;
@@ -729,22 +749,33 @@ main {
     align-items: center;
     align-content: center;
   }
-  main div#top div.profile-container div#profile div.profile-inner img.profile-img {
+  main div#top div.profile-container div#profile div.profile-inner div.img {
     width: 20%;
-    aspect-ratio: 400/400;
+    aspect-ratio: 1/1;
   }
-  main div#top div.profile-container div#profile div.profile-inner h3 {
-    width: 40%;
+  main div#top div.profile-container div#profile div.profile-inner div.img img.profile-img01 {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
+  }
+  main div#top div.profile-container div#profile div.profile-inner div.text {
+    width: 80%;
+    padding: 30px 0;
+  }
+  main div#top div.profile-container div#profile div.profile-inner div.text h3 {
+    width: 100%;
     font-size: 24px;
     text-align: center;
   }
-  main div#top div.profile-container div#profile div.profile-inner h3 rt {
+  main div#top div.profile-container div#profile div.profile-inner div.text h3 rt {
     font-size: 50%;
     font-weight: lighter;
   }
   main div#top div.profile-container div#profile div.profile-inner div.profile-text {
-    width: calc(60% + 80px);
-    padding: 60px 40px 0;
+    width: 100%;
+    padding: 30px 40px 0;
   }
   main div#top div.profile-container div#profile div.profile-inner div.profile-text p {
     width: 100%;
@@ -768,22 +799,26 @@ main {
   }
   main div#top div.profile-container div#profile ul li {
     width: 100%;
-    list-style: none;
-  }
-  main div#top div.profile-container div#profile ul li a {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    width: 100%;
+    list-style: none;
     padding: 10px 0;
   }
-  main div#top div.profile-container div#profile ul li a img {
-    display: block;
+  main div#top div.profile-container div#profile ul li div.img {
     width: 20%;
+    aspect-ratio: 1/1;
   }
-  main div#top div.profile-container div#profile ul li a div {
+  main div#top div.profile-container div#profile ul li div.img img {
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+  main div#top div.profile-container div#profile ul li div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -791,16 +826,30 @@ main {
     align-items: center;
     width: 80%;
   }
-  main div#top div.profile-container div#profile ul li a div img {
-    display: block;
-    width: 150px;
-  }
-  main div#top div.profile-container div#profile ul li a div h2 {
+  main div#top div.profile-container div#profile ul li div div.star-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
     width: 100%;
-    padding: 10px 40px;
+    padding: 10px 0 15px;
+  }
+  main div#top div.profile-container div#profile ul li div div.star-img p {
+    width: auto;
+    display: inline-block;
+    padding: 0 10px;
     text-align: center;
   }
-  main div#top div.profile-container div#profile ul li a div p {
+  main div#top div.profile-container div#profile ul li div div.star-img img {
+    display: inline-block;
+    width: 150px;
+  }
+  main div#top div.profile-container div#profile ul li div h2 {
+    width: 100%;
+    padding: 10px 40px 0;
+    text-align: center;
+  }
+  main div#top div.profile-container div#profile ul li div p {
     width: 100%;
     padding: 0 40px;
   }
@@ -1209,10 +1258,19 @@ main {
     left: 15px;
     padding: 5px;
     background: #A3A6FF;
+    z-index: 100;
   }
-  main div#top div#content04 div.slideshow02 div div.slick-slide div.news-content img {
+  main div#top div#content04 div.slideshow02 div div.slick-slide div.news-content div.img {
     width: 100%;
+    aspect-ratio: 16/9;
+  }
+  main div#top div#content04 div.slideshow02 div div.slick-slide div.news-content div.img img {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
     display: block;
+    transform: translateY(-50%);
   }
   main div#top div#content04 div.slideshow02 div div.slick-slide div.news-content div.slide2-content {
     display: flex;
@@ -1434,7 +1492,7 @@ main {
   }
   main div#top div.profile-container div#profile {
     position: relative;
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     margin: 0 auto;
     padding: 0 50px 60px;
@@ -1463,25 +1521,35 @@ main {
     align-items: center;
     align-content: center;
   }
-  main div#top div.profile-container div#profile div img.profile-img01 {
-    width: 200px;
-    aspect-ratio: 400/400;
+  main div#top div.profile-container div#profile div div.img {
+    width: 150px;
+    aspect-ratio: 1/1;
   }
-  main div#top div.profile-container div#profile div h3 {
+  main div#top div.profile-container div#profile div div.img img.profile-img01 {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
+  }
+  main div#top div.profile-container div#profile div div.text {
+    width: calc(100% - 200px);
+  }
+  main div#top div.profile-container div#profile div div.text h3 {
     width: 100%;
     font-size: 24px;
     padding: 40px 0 20px;
     text-align: center;
   }
-  main div#top div.profile-container div#profile div h3 rt {
+  main div#top div.profile-container div#profile div div.text h3 rt {
     font-size: 50%;
     font-weight: lighter;
   }
-  main div#top div.profile-container div#profile div div.profile-text {
+  main div#top div.profile-container div#profile div div.text div.profile-text {
     width: 100%;
     padding: 0 40px 20px;
   }
-  main div#top div.profile-container div#profile div div.profile-text p {
+  main div#top div.profile-container div#profile div div.text div.profile-text p {
     width: 100%;
   }
   main div#top div.profile-container div#profile div.programming-back {
@@ -1513,21 +1581,25 @@ main {
   main div#top div.profile-container div#profile ul li {
     width: 100%;
     list-style: none;
-  }
-  main div#top div.profile-container div#profile ul li a {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    width: 100%;
     padding: 10px 0;
   }
-  main div#top div.profile-container div#profile ul li a img {
-    display: block;
+  main div#top div.profile-container div#profile ul li div.img {
     width: 20%;
+    aspect-ratio: 1/1;
   }
-  main div#top div.profile-container div#profile ul li a div {
+  main div#top div.profile-container div#profile ul li div.img img {
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+  main div#top div.profile-container div#profile ul li div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1535,17 +1607,30 @@ main {
     align-items: center;
     width: 80%;
   }
-  main div#top div.profile-container div#profile ul li a div img {
-    display: block;
+  main div#top div.profile-container div#profile ul li div div.star-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 10px 0 15px;
+  }
+  main div#top div.profile-container div#profile ul li div div.star-img p {
+    width: auto;
+    display: inline-block;
+    padding: 0 10px;
+  }
+  main div#top div.profile-container div#profile ul li div div.star-img img {
+    display: inline-block;
     width: 150px;
   }
-  main div#top div.profile-container div#profile ul li a div h2 {
+  main div#top div.profile-container div#profile ul li div h2 {
     width: 100%;
     padding: 10px 40px;
     font-size: 18px;
     text-align: center;
   }
-  main div#top div.profile-container div#profile ul li a div p {
+  main div#top div.profile-container div#profile ul li div p {
     width: 100%;
     font-size: 16px;
     padding: 0 40px;
@@ -1973,10 +2058,19 @@ main {
     left: 0;
     padding: 5px;
     background: #A3A6FF;
+    z-index: 100;
   }
-  main div#top div#content04 div.slideshow02 .slick-slide div.news-content img {
+  main div#top div#content04 div.slideshow02 .slick-slide div.news-content div.img {
     width: 100%;
+    aspect-ratio: 16/9;
+  }
+  main div#top div#content04 div.slideshow02 .slick-slide div.news-content div.img img {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
     display: block;
+    transform: translateY(-50%);
   }
   main div#top div#content04 div.slideshow02 .slick-slide div.news-content div.slide2-content {
     display: flex;
@@ -2233,25 +2327,35 @@ main {
     align-items: center;
     align-content: center;
   }
-  main div#top div.profile-container div#profile div img.profile-img01 {
-    width: 250px;
-    aspect-ratio: 400/400;
+  main div#top div.profile-container div#profile div div.img {
+    width: 180px;
+    aspect-ratio: 1/1;
   }
-  main div#top div.profile-container div#profile div h3 {
+  main div#top div.profile-container div#profile div div.img img.profile-img01 {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
+  }
+  main div#top div.profile-container div#profile div div.text {
+    width: 100%;
+  }
+  main div#top div.profile-container div#profile div div.text h3 {
     width: 100%;
     font-size: 24px;
     padding: 40px 0 20px;
     text-align: center;
   }
-  main div#top div.profile-container div#profile div h3 rt {
+  main div#top div.profile-container div#profile div div.text h3 rt {
     font-size: 50%;
     font-weight: lighter;
   }
-  main div#top div.profile-container div#profile div div.profile-text {
+  main div#top div.profile-container div#profile div div.text div.profile-text {
     width: 100%;
     padding: 0;
   }
-  main div#top div.profile-container div#profile div div.profile-text p {
+  main div#top div.profile-container div#profile div div.text div.profile-text p {
     width: 100%;
   }
   main div#top div.profile-container div#profile div.programming-back {
@@ -2279,41 +2383,60 @@ main {
     margin: 0 auto;
   }
   main div#top div.profile-container div#profile ul li {
-    width: 100%;
+    width: 280px;
     list-style: none;
-  }
-  main div#top div.profile-container div#profile ul li a {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    width: 100%;
     padding: 10px 0;
+    margin: 0 auto;
   }
-  main div#top div.profile-container div#profile ul li a img {
+  main div#top div.profile-container div#profile ul li div.img {
+    width: 180px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+  }
+  main div#top div.profile-container div#profile ul li div.img img {
+    position: absolute;
+    top: 50%;
     display: block;
-    width: 20%;
+    width: 100%;
+    transform: translateY(-50%);
   }
-  main div#top div.profile-container div#profile ul li a div {
+  main div#top div.profile-container div#profile ul li div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
   }
-  main div#top div.profile-container div#profile ul li a div img {
-    display: block;
-    width: 150px;
+  main div#top div.profile-container div#profile ul li div div.star-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 0 15px;
   }
-  main div#top div.profile-container div#profile ul li a div h2 {
+  main div#top div.profile-container div#profile ul li div div.star-img p {
+    width: auto;
+    display: inline-block;
+    padding: 0 10px;
+  }
+  main div#top div.profile-container div#profile ul li div div.star-img img {
+    display: inline-block;
+    width: 120px;
+  }
+  main div#top div.profile-container div#profile ul li div h2 {
     width: 100%;
     padding: 10px 40px;
     font-size: 18px;
     text-align: center;
   }
-  main div#top div.profile-container div#profile ul li a div p {
+  main div#top div.profile-container div#profile ul li div p {
     width: 100%;
     font-size: 16px;
     padding: 0 40px;

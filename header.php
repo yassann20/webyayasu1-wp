@@ -11,6 +11,7 @@
     <!--/slick.css-->
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=html&lang=js&lang=css&skin=Sons-Of-Obsidian">
     </script>
+    
     <!--デザインを変更する場合はSons-Of-Obsidianを変更-->
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/site-date/css/style.css">

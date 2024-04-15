@@ -26,6 +26,7 @@
                                 <p class="category" href="<?php echo esc_url(get_category_link($category->term_id)); ?>"><?php echo esc_html($category->name); ?></p><!--記事カテゴリ名-->
                             <?php endforeach; ?>
                         <?php endif; ?>
+                        <div class="img">
                         <?php if (has_post_thumbnail()) : ?>
                             <img src="<?php echo get_the_post_thumbnail_url(); //サムネイルがある場合は表示 
                                         ?>" alt="">
@@ -33,6 +34,7 @@
                             <img src="<?php echo get_template_directory_uri(); //ない場合はこのurlの画像を表示 
                                         ?>/site-date/photos/pc-photo/codding.jpg" alt="">
                         <?php endif; ?>
+                        </div>
                         <div class="slide2-content">
                             <p class="date"><?php echo get_the_date(); ?></p><!--更新日時-->
                             <p class="text"><?php the_title(); ?></p><!--記事本文抜粋-->

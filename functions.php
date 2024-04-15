@@ -13,19 +13,29 @@ function webyayasu3_setup()
 
 add_action('after_setup_theme', 'webyayasu3_setup');
 
+
+//自作javascriptファイルを読み込ませる
+function my_action_scripts_method(){
+  //自作アニメーションjs(particles.js)の読み込み
+  wp_enqueue_script(
+    'particles_script',
+    get_template_directory_uri().'/site-date/js/particles.js',array('jquery'),true
+  );
+  //自作アニメーションjs(action.js)の読み込み
+  wp_enqueue_script(
+    'action_script',
+    get_template_directory_uri().'/site-date/js/action.js',array('jquery'),true
+  );
+}
+add_action('wp_enqueue_scripts', 'my_action_scripts_method');
+
+
+
 function customizer_widgets()
 {
   add_theme_support('customize-selective-refresh-widgets');
 }
 add_action('init', 'customizer_widgets');
-
-function enqueue_custom_scripts() //jquery読み込み
-{
-  wp_enqueue_script('jquery');
-}
-add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-
-//リアルタイムでのカスタマイズを有効にするためのjavascriptを読み込む
 
 //カスタマイザー付与
 function theme_customize_register($wp_customize)
@@ -452,146 +462,23 @@ function theme_customize_register($wp_customize)
   ));
   /* profileスキル(名前)はここまで */
 
-
   
-  //profile内のスキル数を増やせるように処理
-  $wp_customize->add_section('mytheme_courses_section', array(
-    'title' => __('コース', 'mytheme'),
-    'priority' => 30,
-  ));
-  
-  //ダミーデータのちに自動で生成
-  $course = array(
-    array(
-      'image' => '/site-date/photos/pc-photo/html.png',
-      'star' => '/site-date/photos/images/star_05.png',
-      'title' => 'HTML',
-      'description' => 'HTMLは幅広いタグを扱うことができ、それぞれの目的に合ったタグを使用することでSEO対策にも貢献させることができます。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/css.png',
-      'star' => '/site-date/photos/images/star_05.png',
-      'title' => 'CSS',
-      'description' => '最近では素のCSSだけではなく、より汎用性に富んだSASS(SCSS形式)を使用しコーディングまで対応することができます。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/javascript.png',
-      'star' => '/site-date/photos/images/star_05.png',
-      'title' => 'JavaScript',
-      'description' => 'JavaScript及びjQueryについては主に動きを加える場合に使用しており、背景アニメーションのような高度な幾何学模様を制作することも可能です。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/php.png',
-      'star' => '/site-date/photos/images/star_04.png',
-      'title' => 'PHP',
-      'description' => 'お問い合わせページのフルスクラッチ開発、WordPress内でのループの作成やカスタマイザーの開発等幅広く対応可能です。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/wordpress.png',
-      'star' => '/site-date/photos/images/star_04.png',
-      'title' => 'WordPress',
-      'description' => 'WordPressでは既存のテンプレートを使用したサイト構築から、テーマカスタマイザーを使用した自作テンプレート制作まで幅広く対応可能です。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/mysql.png',
-      'star' => '/site-date/photos/images/star_04.png',
-      'title' => 'MySQL',
-      'description' => 'MySQLではPHPと連携し、商品管理サイトの作成やWordPress回りの構築する際に使用しています。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/git.png',
-      'star' => '/site-date/photos/images/star_05.png',
-      'title' => 'Git',
-      'description' => 'ソースコードの管理はGitを使用していますので、チームでの開発を行う案件にも対応可能です。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/photoshop.png',
-      'star' => '/site-date/photos/images/star_05.png',
-      'title' => 'Photoshop',
-      'description' => 'デザインデータの書き出し等を主に使用しています。また、撮影した画像などの加工処理等も行えます。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/illustrator.png',
-      'star' => '/site-date/photos/images/star_04.png',
-      'title' => 'Illustrator',
-      'description' => '主にイラストやロゴの制作に使用しており、基本的な操作をすることが可能です。',
-    ),
-    array(
-      'image' => '/site-date/photos/pc-photo/xd.png',
-      'star' => '/site-date/photos/images/star_05.png',
-      'title' => 'XD',
-      'description' => '主にデザインを書き出す際に使用するツールでPhotoshopの次くらいの頻度で書き出すことが多いです。また、これ以外のデザインカンプの共有法としてはFigmaからの。',
-    ),
-    );
-
-    // ダミーデータを元に動的に設定を生成
-foreach( $course as $index => $coure ){
-    // 画像
-    $wp_customize->add_setting('mytheme_course_image_' . $index, array(
-        'default'   => $coure['image'],
-        'transport' => 'refresh',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'mytheme_course_image_' . $index, array(
-        'label'    => __('コース画像', 'mytheme') . ' (' . $coure['title'] . ')',
-        'section'  => 'mytheme_courses_section',
-        'settings' => 'mytheme_course_image_' . $index,
-    )));
-    $wp_customize->selective_refresh->add_partial('mytheme_course_image_' . $index, array(
-      'selector' => '.list-img' . ($index + 1), // セレクターを実際の出力に合わせて変更する
-      'container_inclusive' => false,
-    ));
-
-
-    // 星の画像
-    $wp_customize->add_setting('mytheme_course_star_' . $index, array(
-        'default'   => $coure['star'],
-        'transport' => 'refresh',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'mytheme_course_star_' . $index, array(
-        'label'    => __('星の画像', 'mytheme') . ' (' . $coure['title'] . ')',
-        'section'  => 'mytheme_courses_section',
-        'settings' => 'mytheme_course_star_' . $index,
-    )));
-    $wp_customize->selective_refresh->add_partial('mytheme_course_star_' . $index, array(
-      'selector' => '.list-star' . ($index + 1), // セレクターを実際の出力に合わせて変更する
-      'container_inclusive' => false,
-    ));
-
-
-    // タイトル
-    $wp_customize->add_setting('mytheme_course_title_' . $index, array(
-        'default'   => $coure['title'],
-        'transport' => 'refresh',
-    ));
-    $wp_customize->add_control('mytheme_course_title_' . $index, array(
-        'label'    => __('コースタイトル', 'mytheme') . ' (' . $coure['title'] . ')',
-        'section'  => 'mytheme_courses_section',
-        'settings' => 'mytheme_course_title_' . $index,
-        'type'     => 'text',
-    ));
-    $wp_customize->selective_refresh->add_partial('mytheme_course_title_' . $index, array(
-      'selector' => '.list-title' . ($index + 1) , // セレクターを実際の出力に合わせて変更する
-      'container_inclusive' => false,
-    ));
-
-
-    // 説明
-    $wp_customize->add_setting('mytheme_course_description_' . $index, array(
-        'default'   => $coure['description'],
-        'transport' => 'refresh',
-    ));
-    $wp_customize->add_control('mytheme_course_description_' . $index, array(
-        'label'    => __('コース説明', 'mytheme') . ' (' . $coure['title'] . ')',
-        'section'  => 'mytheme_courses_section',
-        'settings' => 'mytheme_course_description_' . $index,
-        'type'     => 'textarea',
-    ));
-    $wp_customize->selective_refresh->add_partial('mytheme_course_description_' . $index, array(
-      'selector' => '.list-text' . ($index + 1), // セレクターを実際の出力に合わせて変更する
-      'container_inclusive' => false,
-    ));
-
-    
-}
 }
 add_action('customize_register', 'theme_customize_register');
+
+//スキルをカスタム投稿形式で記載する
+function create_skill_content_post_type() {
+  register_post_type('skill_content',
+      array(
+          'labels' => array(
+              'name' => __('スキル'),
+              'singular_name' => __('スキル')
+          ),
+          'public' => true,
+          'has_archive' => false,
+          'rewrite' => array('slug' => 'skill_content'),
+          'supports' => array('title', 'editor', 'thumbnail'),
+      )
+  );
+}
+add_action('init', 'create_skill_content_post_type');

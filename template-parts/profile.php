@@ -6,10 +6,14 @@
             </div>
         </div>
         <div class="profile-inner">
+            <div class="img">
             <img class="profile-img01" src="<?php echo esc_url(get_theme_mod('profile_image', get_template_directory_uri() . '/site-date/photos/pc-photo/profile.png')); ?>" alt="">
+            </div>
+            <div class="text">
             <h3><ruby class="name">安<rt>やす</rt>崎<rt>ざき</rt>&emsp;海<rt>&nbsp;&emsp;かい</rt>星<rt>せい</rt></ruby></h3>
             <div class="profile-text">
                 <p class="profile-p"><?php echo esc_html(get_theme_mod('profile_p_text', '初めまして、当サイトをご覧いただきましてありがとうございます。私は北海道札幌市を拠点にフロントエンドエンジニアとして活動させていただいている。安崎 海星と申します。当方ではウェブサイトの構築、LPの作成、その他保守など様々案件に低価格で対応できるよう日々技術力の向上と作業の効率化に取り組んでいます')); ?></p>
+            </div>
             </div>
         </div>
         <div class="programming-back">
@@ -18,101 +22,58 @@
             </div>
         </div>
         <ul>
+            <!--ここからスキルコンテンツのカスタム投稿機能を付与-->
             <?php
-            //実際にサイトで使用するデフォルトデータ
-            $default_course = array(
-                array(
-                    'image' => '/site-date/photos/pc-photo/html.png',
-                    'star' => '/site-date/photos/images/star_05.png',
-                    'title' => 'HTML',
-                    'description' => 'HTMLは幅広いタグを扱うことができ、それぞれの目的に合ったタグを使用することでSEO対策に寄り添ったサイトを構築可能です。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/css.png',
-                    'star' => '/site-date/photos/images/star_05.png',
-                    'title' => 'CSS',
-                    'description' => '最近では素のCSSだけではなく、より汎用性に富んだSASS(SCSS形式)を使用したコーディングが可能です。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/javascript.png',
-                    'star' => '/site-date/photos/images/star_05.png',
-                    'title' => 'JavaScript',
-                    'description' => 'JavaScript及びjQueryについては主に動きを加える場合に使用しており、当サイトの背景アニメーションのような高度な幾何学模様を制作することも可能です。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/php.png',
-                    'star' => '/site-date/photos/images/star_04.png',
-                    'title' => 'PHP',
-                    'description' => 'お問い合わせページのフルスクラッチ開発、WordPress内でのループの作成やカスタマイザーの開発等幅広く対応可能です。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/wordpress.png',
-                    'star' => '/site-date/photos/images/star_04.png',
-                    'title' => 'WordPress',
-                    'description' => 'WordPressでは既存のテンプレートを使用したサイト構築から、テーマカスタマイザーを使用した自作テンプレート制作まで幅広く対応可能です。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/mysql.png',
-                    'star' => '/site-date/photos/images/star_04.png',
-                    'title' => 'MySQL',
-                    'description' => 'MySQLではPHPと連携し、商品管理サイトの作成やWordPress回りの構築する際に使用しています。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/git.png',
-                    'star' => '/site-date/photos/images/star_05.png',
-                    'title' => 'Git',
-                    'description' => 'ソースコードの管理はGitを使用しています。そのためチームでの開発を行う案件にも対応可能です。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/photoshop.png',
-                    'star' => '/site-date/photos/images/star_05.png',
-                    'title' => 'Photoshop',
-                    'description' => 'デザインデータの書き出し等を主に使用しています。また、撮影した画像などの加工処理等も行えます。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/illustrator.png',
-                    'star' => '/site-date/photos/images/star_04.png',
-                    'title' => 'Illustrator',
-                    'description' => 'イラストやロゴの制作に使用しており、基本的な操作をすることが可能です。',
-                ),
-                array(
-                    'image' => '/site-date/photos/pc-photo/xd.png',
-                    'star' => '/site-date/photos/images/star_05.png',
-                    'title' => 'XD',
-                    'description' => 'デザインを書き出す際に使用するツールでPhotoshopに次いで使用する機会が多いツールです。',
-                ),
-            );
-            // テーマカスタマイザーで保存されたデータを取得
-            $courses = array();
-            for ($index = 0; $index < 10; $index++) {
-                $coure = array(
-                    'image'       => get_theme_mod('mytheme_course_image_' . $index, $default_course[$index]['image']),
-                    'star'        => get_theme_mod('mytheme_course_star_' . $index, $default_course[$index]['star']),
-                    'title'       => get_theme_mod('mytheme_course_title_' . $index, $default_course[$index]['title']),
-                    'description' => get_theme_mod('mytheme_course_description_' . $index, $default_course[$index]['description']),
-                );
-
-                // データが存在する場合のみ追加
-                if ($coure['image'] || $coure['star'] || $coure['title'] || $coure['description']) {
-                    $courses[] = $coure;
-                }
+            function add_skill_class_to_images($content){
+                //画像の'<img>'タグにクラスを追加
+                $content = preg_replace('/<img(.*?)class=\"(.*?)\"(.*?)>/', '<img$1class="$2 list-star"$3>', $content);
+                return $content;
             }
-            $i = 1;
 
-            // コースを出力
-            foreach ($courses as $course) : ?>
+            $custom_content_query = new WP_query(array(
+                'post_type' => 'skill_content',
+                'posts_per_page' => -1,
+                'order' => 'DESC', // 投稿の順序を逆にする
+            )) ;
+
+            if ($custom_content_query->have_posts()):
+                while ($custom_content_query->have_posts()): $custom_content_query->the_post();
+            ?>
                 <li>
-                    <a href="">
-                        <img class="list-img<?php echo $i; ?>" src="<?php echo get_template_directory_uri(); ?><?php echo $course['image']; ?>" alt="">
+                        <!--スキルのアイキャッチ画像を出力する-->
+                        <div class="img">
+                        <?php
+                    if (has_post_thumbnail()) {
+                        // アイキャッチの画像を取得
+                        $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail');
+                        // アイキャッチの画像を出力し、クラスを追加
+                        echo '<img src="' . esc_url($thumbnail[0]) . '" alt="' . esc_attr(get_the_title()) . '" class="list-img">';
+                    }
+                    ?>
+                    </div>
                         <div>
-                            <img class="list-star<?php echo $i; ?>" src="<?php echo get_template_directory_uri(); ?><?php echo $course['star']; ?>" alt="">
-                            <h2 class="list-title<?php echo $i; ?>"><?php echo $course['title']; ?></h2>
-                            <p class="list-text<?php echo $i; ?>"><?php echo $course['description']; ?></p>
+                            <!--スキルのレベルを表す画像を出力-->
+                            <?php
+                            //投稿のIDを取得
+                            $post_id = get_the_ID();
+                            //投稿コンテンツを取得
+                            $content = get_post_meta($post_id, 'skill_content', true);
+                            //コンテンツ内の画像にクラスを追加するフィルターを定義
+                            //コンテンツ内の画像にクラスを追加するフィルターを適応させる
+                            echo apply_filters('the_content', $content);
+                            ?>
+                            <h2><?php the_title(); ?></h2>
+                            <?php the_content(); ?>
                         </div>
-                    </a>
                 </li>
-                <?php $i++; ?>
-            <?php endforeach; ?>
+            <?php 
+            endwhile;
+            wp_reset_postdata();
+        else: 
+            _e('No custom content found.', 'textdomain');
+        endif;
+            ?>
+            <!--ここまで-->
         </ul>
     </div>
 </div>
