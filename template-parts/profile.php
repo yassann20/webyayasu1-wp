@@ -26,7 +26,7 @@
             <?php
             function add_skill_class_to_images($content){
                 //画像の'<img>'タグにクラスを追加
-                $content = preg_replace('/<img(.*?)class=\"(.*?)\"(.*?)>/', '<img$1class="$2 list-star"$3>', $content);
+                $content = preg_replace('/<img(.*?)class=\"(.*?)\"(.*?)>/', '<img$1class="$2 star-img"$3>', $content);
                 return $content;
             }
 

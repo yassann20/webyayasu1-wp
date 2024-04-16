@@ -35,7 +35,7 @@
                                 }
                                 ?>
                             </div>
-                            <div class="archive-img">
+                            <div class="img">
                                 <?php
                                 if (has_post_thumbnail()) {
                                     the_post_thumbnail('thumbnail', array('class' => 'archive-thumbnail'));
@@ -46,7 +46,7 @@
                             </div>
                             <div class="text-container">
                                 <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                <p><?php the_excerpt(); ?></p>
+                                <?php the_content(); ?>
                             </div>
                         </div>
                 <?php

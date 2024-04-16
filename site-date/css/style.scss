@@ -911,31 +911,36 @@ main {
                         justify-content: center;
                         align-items: center;
                         align-content: center;
-                        div.img{
+
+                        div.img {
                             width: 20%;
                             aspect-ratio: 1/1;
-                        img.profile-img01 {
-                            position: absolute;
-                            top: 50%;
-                            width: 100%;
-                            height: auto;
-                            transform: translateY(-50%);
-                        }
-                    }
-                    div.text{
-                        width: calc( 100% - 20% );
-                        padding: 30px 0;
-                        h3 {
-                            width: 100%;
-                            font-size: 24px;
-                            text-align: center;
 
-                            rt {
-                                font-size: 50%;
-                                font-weight: lighter;
+                            img.profile-img01 {
+                                position: absolute;
+                                top: 50%;
+                                width: 100%;
+                                height: auto;
+                                transform: translateY(-50%);
                             }
                         }
-                    }
+
+                        div.text {
+                            width: calc(100% - 20%);
+                            padding: 30px 0;
+
+                            h3 {
+                                width: 100%;
+                                font-size: 24px;
+                                text-align: center;
+
+                                rt {
+                                    font-size: 50%;
+                                    font-weight: lighter;
+                                }
+                            }
+                        }
+
                         div.profile-text {
                             width: 100%;
                             padding: 30px 40px 0;
@@ -1017,6 +1022,7 @@ main {
                                     img {
                                         display: inline-block;
                                         width: 150px;
+                                        height: auto;
                                     }
                                 }
 
@@ -1049,8 +1055,18 @@ main {
                 margin: 0 auto;
                 padding: 0 80px;
 
-                img.thumbnail {
+                div.img {
                     width: 100%;
+                    aspect-ratio: 16/9;
+                    margin-top: 60px;
+
+                    img.thumbnail {
+                        position: absolute;
+                        top: 50%;
+                        width: 100%;
+                        height: auto;
+                        transform: translateY(-50%);
+                    }
                 }
 
                 div.blog-inner {
@@ -1139,7 +1155,7 @@ main {
                     max-width: 800px;
                     width: 100%;
                     text-align: center;
-                    padding: 20px 0 10px;
+                    padding: 10px 0 10px;
                     margin: 0 auto
                 }
 
@@ -1174,18 +1190,16 @@ main {
                             }
                         }
 
-                        div.archive-img {
-                            position: relative;
+                        div.img {
                             width: 100%;
-                            aspect-ratio: 300/187;
-                            overflow: hidden;
+                            aspect-ratio: 16/9;
 
                             img {
                                 position: absolute;
                                 top: 50%;
-                                transform: translateY(-50%);
                                 width: 100%;
                                 height: auto;
+                                transform: translateY(-50%);
                             }
                         }
 
@@ -1199,7 +1213,13 @@ main {
                             }
 
                             p {
-                                padding: 0;
+                                max-height: 3em;
+                                /* 3行分の高さに制限 */
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                /* テキストがはみ出した場合に省略記号で表示 */
+                                white-space: nowrap;
+                                /* テキストを折り返さない */
                             }
                         }
                     }
@@ -1934,6 +1954,7 @@ main {
                                     img {
                                         display: inline-block;
                                         width: 150px;
+                                        height: auto;
                                     }
                                 }
 
@@ -1967,8 +1988,18 @@ main {
                 margin: 0;
                 padding: 0 60px;
 
-                img.thumbnail {
+                div.img {
                     width: 100%;
+                    aspect-ratio: 16/9;
+                    margin-top: 60px;
+
+                    img.thumbnail {
+                        position: absolute;
+                        top: 50%;
+                        width: 100%;
+                        height: auto;
+                        transform: translateY(-50%);
+                    }
                 }
 
                 div.blog-inner {
@@ -2054,7 +2085,7 @@ main {
                 p {
                     width: 100%;
                     text-align: center;
-                    padding: 20px 0 10px;
+                    padding: 10px 0 10px;
                     margin: 0 auto
                 }
 
@@ -2088,18 +2119,16 @@ main {
                             }
                         }
 
-                        .archive-img {
-                            position: relative;
+                        .img {
                             width: 100%;
-                            aspect-ratio: 300/187;
-                            overflow: hidden;
+                            aspect-ratio: 16/9;
 
                             img {
                                 position: absolute;
                                 top: 50%;
-                                transform: translateY(-50%);
                                 width: 100%;
                                 height: auto;
+                                transform: translateY(-50%);
                             }
                         }
 
@@ -2113,7 +2142,13 @@ main {
                             }
 
                             p {
-                                padding: 0;
+                                max-height: 3em;
+                                /* 3行分の高さに制限 */
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                /* テキストがはみ出した場合に省略記号で表示 */
+                                white-space: nowrap;
+                                /* テキストを折り返さない */
                             }
                         }
                     }
@@ -2872,6 +2907,7 @@ main {
                                     img {
                                         display: inline-block;
                                         width: 120px;
+                                        height: auto;
                                     }
                                 }
 
@@ -2904,8 +2940,18 @@ main {
                 width: 100%;
                 padding: 0 10px;
 
-                img.thumbnail {
+                div.img {
                     width: 100%;
+                    aspect-ratio: 16/9;
+                    margin-top: 60px;
+
+                    img.thumbnail {
+                        position: absolute;
+                        top: 50%;
+                        width: 100%;
+                        height: auto;
+                        transform: translateY(-50%);
+                    }
                 }
 
                 div.blog-inner {
@@ -2990,7 +3036,7 @@ main {
                 p {
                     width: 100%;
                     text-align: center;
-                    padding: 20px 0 10px;
+                    padding: 10px 0 10px;
                     margin: 0 auto
                 }
 
@@ -3024,18 +3070,16 @@ main {
                             }
                         }
 
-                        .archive-img {
-                            position: relative;
+                        .img {
                             width: 100%;
-                            aspect-ratio: 300/187;
-                            overflow: hidden;
+                            aspect-ratio: 16/9;
 
                             img {
                                 position: absolute;
                                 top: 50%;
-                                transform: translateY(-50%);
                                 width: 100%;
                                 height: auto;
+                                transform: translateY(-50%);
                             }
                         }
 
@@ -3049,7 +3093,13 @@ main {
                             }
 
                             p {
-                                padding: 0;
+                                max-height: 3em;
+                                /* 3行分の高さに制限 */
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                /* テキストがはみ出した場合に省略記号で表示 */
+                                white-space: nowrap;
+                                /* テキストを折り返さない */
                             }
                         }
                     }

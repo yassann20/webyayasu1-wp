@@ -843,6 +843,7 @@ main {
   main div#top div.profile-container div#profile ul li div div.star-img img {
     display: inline-block;
     width: 150px;
+    height: auto;
   }
   main div#top div.profile-container div#profile ul li div h2 {
     width: 100%;
@@ -863,8 +864,17 @@ main {
     margin: 0 auto;
     padding: 0 80px;
   }
-  main div#top div.blog img.thumbnail {
+  main div#top div.blog div.img {
     width: 100%;
+    aspect-ratio: 16/9;
+    margin-top: 60px;
+  }
+  main div#top div.blog div.img img.thumbnail {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
   }
   main div#top div.blog div.blog-inner {
     display: inline-block;
@@ -935,7 +945,7 @@ main {
     max-width: 800px;
     width: 100%;
     text-align: center;
-    padding: 20px 0 10px;
+    padding: 10px 0 10px;
     margin: 0 auto;
   }
   main div#top div.archive div.archive-content {
@@ -967,18 +977,16 @@ main {
     display: inline-block;
     padding: 0;
   }
-  main div#top div.archive div.archive-content div.archive-inner div.archive-img {
-    position: relative;
+  main div#top div.archive div.archive-content div.archive-inner div.img {
     width: 100%;
-    aspect-ratio: 300/187;
-    overflow: hidden;
+    aspect-ratio: 16/9;
   }
-  main div#top div.archive div.archive-content div.archive-inner div.archive-img img {
+  main div#top div.archive div.archive-content div.archive-inner div.img img {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     width: 100%;
     height: auto;
+    transform: translateY(-50%);
   }
   main div#top div.archive div.archive-content div.archive-inner div.text-container {
     width: 100%;
@@ -989,7 +997,13 @@ main {
     padding-bottom: 15px;
   }
   main div#top div.archive div.archive-content div.archive-inner div.text-container p {
-    padding: 0;
+    max-height: 3em;
+    /* 3行分の高さに制限 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* テキストがはみ出した場合に省略記号で表示 */
+    white-space: nowrap;
+    /* テキストを折り返さない */
   }
   main div#top div.archive div.page-selecter {
     width: 100%;
@@ -1623,6 +1637,7 @@ main {
   main div#top div.profile-container div#profile ul li div div.star-img img {
     display: inline-block;
     width: 150px;
+    height: auto;
   }
   main div#top div.profile-container div#profile ul li div h2 {
     width: 100%;
@@ -1644,8 +1659,17 @@ main {
     margin: 0;
     padding: 0 60px;
   }
-  main div#top div.blog img.thumbnail {
+  main div#top div.blog div.img {
     width: 100%;
+    aspect-ratio: 16/9;
+    margin-top: 60px;
+  }
+  main div#top div.blog div.img img.thumbnail {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
   }
   main div#top div.blog div.blog-inner {
     display: inline-block;
@@ -1713,7 +1737,7 @@ main {
   main div#top div.archive p {
     width: 100%;
     text-align: center;
-    padding: 20px 0 10px;
+    padding: 10px 0 10px;
     margin: 0 auto;
   }
   main div#top div.archive div.archive-content {
@@ -1744,18 +1768,16 @@ main {
     display: inline-block;
     padding: 0;
   }
-  main div#top div.archive div.archive-content div.archive-inner .archive-img {
-    position: relative;
+  main div#top div.archive div.archive-content div.archive-inner .img {
     width: 100%;
-    aspect-ratio: 300/187;
-    overflow: hidden;
+    aspect-ratio: 16/9;
   }
-  main div#top div.archive div.archive-content div.archive-inner .archive-img img {
+  main div#top div.archive div.archive-content div.archive-inner .img img {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     width: 100%;
     height: auto;
+    transform: translateY(-50%);
   }
   main div#top div.archive div.archive-content div.archive-inner div.text-container {
     width: 100%;
@@ -1766,7 +1788,13 @@ main {
     padding-bottom: 15px;
   }
   main div#top div.archive div.archive-content div.archive-inner div.text-container p {
-    padding: 0;
+    max-height: 3em;
+    /* 3行分の高さに制限 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* テキストがはみ出した場合に省略記号で表示 */
+    white-space: nowrap;
+    /* テキストを折り返さない */
   }
   main div#top div.archive div.page-selecter {
     width: 100%;
@@ -2429,6 +2457,7 @@ main {
   main div#top div.profile-container div#profile ul li div div.star-img img {
     display: inline-block;
     width: 120px;
+    height: auto;
   }
   main div#top div.profile-container div#profile ul li div h2 {
     width: 100%;
@@ -2449,8 +2478,17 @@ main {
     width: 100%;
     padding: 0 10px;
   }
-  main div#top div.blog img.thumbnail {
+  main div#top div.blog div.img {
     width: 100%;
+    aspect-ratio: 16/9;
+    margin-top: 60px;
+  }
+  main div#top div.blog div.img img.thumbnail {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
   }
   main div#top div.blog div.blog-inner {
     display: inline-block;
@@ -2517,7 +2555,7 @@ main {
   main div#top div.archive p {
     width: 100%;
     text-align: center;
-    padding: 20px 0 10px;
+    padding: 10px 0 10px;
     margin: 0 auto;
   }
   main div#top div.archive div.archive-content {
@@ -2548,18 +2586,16 @@ main {
     display: inline-block;
     padding: 0;
   }
-  main div#top div.archive div.archive-content div.archive-inner .archive-img {
-    position: relative;
+  main div#top div.archive div.archive-content div.archive-inner .img {
     width: 100%;
-    aspect-ratio: 300/187;
-    overflow: hidden;
+    aspect-ratio: 16/9;
   }
-  main div#top div.archive div.archive-content div.archive-inner .archive-img img {
+  main div#top div.archive div.archive-content div.archive-inner .img img {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     width: 100%;
     height: auto;
+    transform: translateY(-50%);
   }
   main div#top div.archive div.archive-content div.archive-inner div.text-container {
     width: 100%;
@@ -2570,7 +2606,13 @@ main {
     padding-bottom: 15px;
   }
   main div#top div.archive div.archive-content div.archive-inner div.text-container p {
-    padding: 0;
+    max-height: 3em;
+    /* 3行分の高さに制限 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* テキストがはみ出した場合に省略記号で表示 */
+    white-space: nowrap;
+    /* テキストを折り返さない */
   }
   main div#top div.archive div.page-selecter {
     width: 100%;

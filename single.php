@@ -10,7 +10,15 @@
             the_post();
         ?>
             <div class="blog">
+                <div class="img">
+                    <?php if(has_post_thumbnail()): ?>
+                    <!--サムネイルがある場合-->
+                    <?php the_post_thumbnail('thumbnail', array('class'=>'thumbnail')); ?>
+                    <?php else: ?>
+                        <!--サムネイルがない場合-->
                 <img class="thumbnail" src="<?php echo get_template_directory_uri(); ?>/photos/pc-photo/noimg.jpg" alt="">
+                <?php endif;?>    
+            </div>
                 <div class="blog-inner">
                     <div class="date">
                         <p>更新日 <?php echo get_the_date('Y/m/d'); ?></p>
